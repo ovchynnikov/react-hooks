@@ -26,7 +26,7 @@ export const Profile = ({match}) => {
          <h1>Profile page</h1>
          <Link to={'/'} className="btn btn-link">Home page</Link>
 
-        <div className="card mb-4">
+        <div className="card mb-4 hover-zoom">
             <div className="cardbody">
                 <div className="row">
                     <div className="col-sm-12 text-center pt-4">
