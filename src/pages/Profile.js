@@ -23,7 +23,7 @@ export const Profile = ({match}) => {
     const { name, company, avatar_url, location, bio, blog, login, html_url, followers, following, public_repos, public_gists} = user
     return (
         <>
-         <h1>Profile page</h1>
+         
          <Link to={'/'} className="btn btn-link">Home page</Link>
 
         <div className="card mb-4 hover-zoom">

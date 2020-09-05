@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import { GithubContext } from './githubContext';
 import { githubReducer } from './githubReducer';
-import { SEARCH_USERS, GET_USER, GET_REPOS, CLEAR_USERS, SET_LOADING } from '../actionTypes';
+import { SEARCH_USERS, GET_USER, GET_REPOS, CLEAR_USERS, SET_LOADING, GET_ME } from '../actionTypes';
 import Axios from 'axios';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
@@ -13,6 +13,7 @@ const addCredentials = url => {
 export const GithubState = ({children}) => {
     const initialState = {
         user: {},
+        userMe: {},
         users: [],
         loading: false,
         repos: []
@@ -43,6 +44,18 @@ export const GithubState = ({children}) => {
         })
     }
 
+    const getMe = async name => {
+        // setLoading()
+        const response = await Axios.get(
+            addCredentials(`https://api.github.com/users/ovchynnikov?`)
+        )
+
+        dispatch({
+            type: GET_ME,
+            payload: response.data
+        })
+    }
+
     const getRepos = async name => {
         setLoading()
         const response = await Axios.get(
@@ -68,12 +81,12 @@ export const GithubState = ({children}) => {
         })
     }
 
-    const {user, users, repos, loading} = state
+    const {user, users, repos, loading, userMe} = state
 
     return (
         <GithubContext.Provider value={{
-            search, getUser, getRepos, clearUsers, setLoading,
-             user, users, repos, loading
+            search, getUser, getRepos, clearUsers, setLoading, getMe,
+             user, users, repos, loading, userMe
         }}>
             {children}
         </GithubContext.Provider>

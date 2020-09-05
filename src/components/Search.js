@@ -21,13 +21,15 @@ export const Search = () => {
         } else {
             alert.show('Type correct GitHub username')
         }
+        
     }
+
     return (
         <div className="form-group">
             <input 
             type="text"
             className="form-control"
-            placeholder="type GitHub username"
+            placeholder="GitHub username"
             onKeyPress={onSubmit}
             value={value}
             onChange={event => setValue(event.target.value)}
